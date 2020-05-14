@@ -59,7 +59,7 @@ int main()
     aut.n_nodes = stari.size(); //asta e numarul de noduri
     aut.toNFA();
     aut.toDFA();
-    aut.minimizeDFA();
+    //aut.minimizeDFA();
     aut.print();
 
 }

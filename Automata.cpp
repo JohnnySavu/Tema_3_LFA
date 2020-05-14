@@ -4,7 +4,34 @@ using namespace std;
 
 void Automata::addEdge(int origin, int node, bool* vizitat)
 {
+
+    for (int i = 1; i<= n_nodes; i++) 
+    {
+        for (auto &it : edge[i]) if(it.first != '$')
+        {
+            for (auto &it2: it.second)
+                if (it2 == origin)
+                {
+                    bool flag = 1;
+                    for (auto& it3: edge[i][it.first])
+                        if (it3 == node)
+                        {
+                            flag = 0;
+                            break;
+                        }
+                    if (flag == 1)
+                        edge[i][it.first].push_back(node);
+                }
+        }
+    }
+
     vizitat[node] = 1;
+
+    if (final_nodes.find(origin) != final_nodes.end())
+    {
+        final_nodes.insert(node);
+    }
+    
     for(auto &it:edge[node])
     {
         if (it.first != '$')
